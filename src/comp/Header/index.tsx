@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { leftHeaderArray, leftHeaderArrayType } from "./data";
 import Link from "next/link";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -14,20 +14,21 @@ import HeaderLogo from "./logo";
 const Header = () => {
   const { scrollYProgress, scrollY } = useScroll();
 
-  const [prevScroll, setPrevScroll] = useState<number>(0); // Track the previous scroll position
-  const [isScrollingUp, setScrollingUp] = useState<boolean>(false);
+  // const [prevScroll, setPrevScroll] = useState<number>(0); // Track the previous scroll position
+  // const [isScrollingUp, setScrollingUp] = useState<boolean>(false);
 
-  useMotionValueEvent(scrollY, "change", (currentScroll) => {
-    setScrollingUp(currentScroll < prevScroll); // Compare with previous scroll
-    setPrevScroll(currentScroll); // Update the previous scroll value
-  });
+  // useMotionValueEvent(scrollY, "change", (currentScroll) => {
+  //   setScrollingUp(currentScroll < prevScroll); // Compare with previous scroll
+  //   setPrevScroll(currentScroll); // Update the previous scroll value
+  // });
 
   // Background color changes based on scroll direction
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 50],
-    isScrollingUp ? ["black", "black"] : ["black", "transparent"]
-  );
+  // const backgroundColor = useTransform(
+  //   scrollY,
+  //   [0, 50],
+  //   isScrollingUp ? ["black", "black"] : ["black", "transparent"]
+  // );
+
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
   return (
@@ -48,9 +49,11 @@ const Header = () => {
         className={`w-full h-full pr-14 pl-14 pt-12 pb-12 overflow-hidden flex justify-between items-center`}
       >
         <div className="flex justify-center items-center gap-12">
-          <div className="flex w-40">
-            <HeaderLogo />
-          </div>
+          <Link href="/" prefetch={true}>
+            <div className="flex w-40">
+              <HeaderLogo />
+            </div>
+          </Link>
           <div className="flex justify-center items-center gap-6">
             {leftHeaderArray.map((item: leftHeaderArrayType, i: number) => (
               <Link
@@ -74,24 +77,6 @@ const Header = () => {
           </Link>
           <RxHamburgerMenu style={{ cursor: "pointer" }} />
         </div>
-        {/* <div className="flex justify-center items-center gap-6">
-          <Link
-            href=""
-            className="text-xs font-semibold uppercase relative group overflow-hidden"
-          >
-            Shop
-            <motion.span
-              className="absolute bottom-0 left-0 w-full h-[1px] bg-white"
-              initial={{ scaleX: 0, originX: 0 }}
-              whileHover={{ scaleX: 1, originX: 0 }}
-              transition={{
-                duration: 0.3,
-                ease: "easeInOut",
-              }}
-            />
-          </Link>
-          <RxHamburgerMenu style={{ cursor: "pointer" }} />
-        </div> */}
       </motion.div>
     </div>
   );

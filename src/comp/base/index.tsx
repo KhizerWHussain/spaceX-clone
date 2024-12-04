@@ -1,18 +1,16 @@
 import React from "react";
-import Header from "../Header";
-import Hero from "../Hero";
 import { imagingData, imagingDataType } from "./data";
-import Footer from "../footer";
 import dynamic from "next/dynamic";
 
 const Imager = dynamic(() => import("../Imager"));
+// const Header = dynamic(() => import("../Header"));
+const Hero = dynamic(() => import("../Hero"));
 
 const Base = () => {
   return (
     <div className="w-screen h-full">
-      <Header />
+      {/* <Header /> */}
       <Hero />
-
       <div>
         {imagingData.map((item: imagingDataType, i: number) => (
           <Imager
@@ -24,8 +22,6 @@ const Base = () => {
           />
         ))}
       </div>
-
-      <Footer />
     </div>
   );
 };

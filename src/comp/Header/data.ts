@@ -5,7 +5,7 @@ export type leftHeaderArrayType = {
 };
 
 export const leftHeaderArray: leftHeaderArrayType[] = [
-  { id: 1, title: "Falcon 9", url: "" },
+  { id: 1, title: "Falcon 9", url: "/vehicles/falcon-9" },
   { id: 2, title: "Faclon Heavy", url: "" },
   { id: 3, title: "Dragon", url: "" },
   { id: 4, title: "Starship", url: "" },
