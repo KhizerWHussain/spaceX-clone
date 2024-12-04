@@ -22,14 +22,14 @@ const FirstStage = () => {
         </div>
         <div className="w-full flex flex-col gap-2 uppercase text-white">
           <TabGroup>
-            <TabList className="flex">
-              {tabs.map((tab, i: number) => (
+            <TabList className="flex gap-6 border-none">
+              {tabs.map((tab: any, i: number) => (
                 <Tab
                   key={i}
                   unselectable="off"
                   className={({ selected }) =>
                     classNames(
-                      "px-4 py-2 text-sm font-medium uppercase",
+                      "py-2 text-sm font-medium uppercase hover:text-white  focus-visible:border-b-white",
                       selected ? "border-b-[1px]  text-white" : "text-gray-500"
                     )
                   }
@@ -39,8 +39,8 @@ const FirstStage = () => {
               ))}
             </TabList>
             <TabPanels className="mt-4">
-              {tabs.map((tab, idx) => (
-                <TabPanel key={idx}>{tab.component}</TabPanel>
+              {tabs.map((tab, i: number) => (
+                <TabPanel key={i}>{tab.component}</TabPanel>
               ))}
             </TabPanels>
           </TabGroup>

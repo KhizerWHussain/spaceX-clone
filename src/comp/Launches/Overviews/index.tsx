@@ -1,40 +1,55 @@
 "use client";
-import React from "react";
+import React, { ReactNode } from "react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "../../../css/custom.swiper.css";
 import SingleVehicleOverview from "./component";
 import MainCompOverview from "./component/mainComp";
 import FirstStage from "./component/FirstStage";
+import InterStage from "./component/interStage";
+import SecondStage from "./component/secondStage";
+import Payload from "./component/Payload";
 
-const swipperComponentsArray = [
-  //   {
-  //     id: 1,
-  //     component: <MainCompOverview />,
-  //     imageSource: "",
-  //   },
+import AfterRenderImage from "../../../assets/images/WebsiteF9Fairings_Render_Desktop.jpg";
+import FirstStageImage from "../../../assets/images/firstStageImage.jpg";
+import InterStageImage from "../../../assets/images/interStageImage.jpg";
+import SecondStageImage from "../../../assets/images/secondStageImage.jpg";
+
+type swipperComponentType = {
+  id: number;
+  component: ReactNode;
+  imageSource: string | any;
+};
+
+const swipperComponentsArray: swipperComponentType[] = [
+  {
+    id: 1,
+    component: <MainCompOverview />,
+    imageSource: AfterRenderImage,
+  },
   {
     id: 2,
     component: <FirstStage />,
+    imageSource: FirstStageImage,
+  },
+  {
+    id: 3,
+    component: <InterStage />,
+    imageSource: InterStageImage,
+  },
+  {
+    id: 4,
+    component: <SecondStage />,
+    imageSource: SecondStageImage,
+  },
+  {
+    id: 5,
+    component: <Payload />,
     imageSource: "",
   },
-  //   {
-  //     id: 3,
-  //     component: null,
-  //     imageSource: "",
-  //   },
-  //   {
-  //     id: 4,
-  //     component: null,
-  //     imageSource: "",
-  //   },
-  //   {
-  //     id: 5,
-  //     component: null,
-  //     imageSource: "",
-  //   },
 ];
 
 const Overviews = () => {
@@ -45,7 +60,10 @@ const Overviews = () => {
         slidesPerView={1}
         allowSlidePrev={true}
         allowSlideNext={true}
-        pagination={{ type: "bullets", clickable: true }}
+        pagination={{
+          type: "bullets",
+          clickable: true,
+        }}
         autoplay={false}
         loop={true}
         title="Vehicle Overview Slider"
@@ -55,13 +73,18 @@ const Overviews = () => {
         updateOnWindowResize={true}
         suppressContentEditableWarning={true}
         suppressHydrationWarning={true}
-        speed={5000}
+        speed={1000}
       >
-        {swipperComponentsArray.map((swiper, i: number) => (
-          <SwiperSlide key={swiper.id + i}>
-            <SingleVehicleOverview reactComponent={swiper.component} />
-          </SwiperSlide>
-        ))}
+        {swipperComponentsArray.map(
+          (swiper: swipperComponentType, i: number) => (
+            <SwiperSlide key={swiper.id + i}>
+              <SingleVehicleOverview
+                reactComponent={swiper.component}
+                imageSource={swiper.imageSource}
+              />
+            </SwiperSlide>
+          )
+        )}
       </Swiper>
     </div>
   );
