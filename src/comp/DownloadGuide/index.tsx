@@ -15,7 +15,7 @@ const DownloadGuide = () => {
           <div className="w-[28rem] flex justify-between items-center gap-4 mt-6">
             <div className="group border-2 border-white text-white hover:text-black flex justify-center items-center w-full cursor-pointer relative overflow-hidden">
               <p className="p-5 font-semibold text-sm relative z-10">
-                Download User's Guide
+                Download User&apos;s Guide
               </p>
               <span className="absolute h-full inset-0 bg-white transform translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
             </div>
