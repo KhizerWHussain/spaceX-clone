@@ -14,7 +14,7 @@ interface RootLayoutProp {
 export default function RootLayout({ children }: Readonly<RootLayoutProp>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="overscroll-none">{children}</body>
     </html>
   );
 }

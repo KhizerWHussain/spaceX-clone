@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
 import React from "react";
+import { motion } from "framer-motion";
 
 interface HeroProp {
   imageSource: string;
-  title?: string;
+  title?: string | null;
   headline: string;
   btnText: string;
 }
@@ -12,8 +13,8 @@ interface HeroProp {
 const Imager = ({ btnText, headline, imageSource, title }: HeroProp) => {
   return (
     <>
-      <div className="relative h-full w-full">
-        <div className="w-full h-full overflow-hidden -mt-20 text-white">
+      <div className="relative h-screen w-screen max-w-full min-w-full overflow-hidden">
+        <div className="w-full h-full min-w-full min-h-full overflow-hidden text-white">
           <Image
             src={imageSource}
             alt={headline}
@@ -22,11 +23,20 @@ const Imager = ({ btnText, headline, imageSource, title }: HeroProp) => {
             loading="lazy"
             priority={false}
             fetchPriority="auto"
+            className="w-screen h-screen"
+            height={1300}
+            width={1200}
           />
-          <div className="absolute top-[28rem] uppercase max-w-[28rem]">
-            <div className="pl-14 flex flex-col gap-4">
+          <motion.div
+            className="uppercase max-w-[32rem] z-10"
+            initial={{ opacity: 0, marginTop: "-12rem" }}
+            whileInView={{ opacity: 1, marginTop: "-18rem" }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+            viewport={{ once: true }}
+          >
+            <div className="pl-14 flex flex-col gap-6">
               <div>
-                <p className="text-lg font-[50]">{title}</p>
+                {title ? <p className="text-lg font-[50]">{title}</p> : null}
                 <p className="text-[42px] font-semibold leading-[3rem]">
                   {headline}
                 </p>
@@ -39,7 +49,7 @@ const Imager = ({ btnText, headline, imageSource, title }: HeroProp) => {
                 <span className="absolute inset-0 bg-white transform translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </>
