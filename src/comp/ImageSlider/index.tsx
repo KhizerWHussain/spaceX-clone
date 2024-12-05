@@ -9,7 +9,19 @@ import { imagesSliderDataArray } from "./data";
 import TextImages from "./component";
 import "./customSwiper.css";
 
-const ImagesSlider = () => {
+type sliderImagesType = {
+  id: number;
+  text: string;
+  imageSource: any | string;
+};
+
+interface ImageSliderProp {
+  provideImages?: sliderImagesType[];
+  autoPlay?: boolean;
+  title?: string;
+}
+
+const ImagesSlider = ({ autoPlay, provideImages }: ImageSliderProp) => {
   return (
     <div className="w-full bg-transparent h-screen min-h-screen">
       <Swiper
@@ -32,11 +44,23 @@ const ImagesSlider = () => {
         suppressHydrationWarning={true}
         speed={1000}
       >
-        {imagesSliderDataArray.map((swiper: any, i: number) => (
-          <SwiperSlide key={swiper.id + i}>
-            <TextImages imageSource={swiper.imageSource} text={swiper.text} />
-          </SwiperSlide>
-        ))}
+        {provideImages && provideImages?.length !== 0
+          ? provideImages.map((swiper: any, i: number) => (
+              <SwiperSlide key={swiper.id + i}>
+                <TextImages
+                  imageSource={swiper.imageSource}
+                  text={swiper.text}
+                />
+              </SwiperSlide>
+            ))
+          : imagesSliderDataArray.map((swiper: any, i: number) => (
+              <SwiperSlide key={swiper.id + i}>
+                <TextImages
+                  imageSource={swiper.imageSource}
+                  text={swiper.text}
+                />
+              </SwiperSlide>
+            ))}
       </Swiper>
     </div>
   );

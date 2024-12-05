@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import VehicleHeroText from "./text";
 
 interface VehicleHeroProp {
   imageSource: any;
@@ -23,12 +24,7 @@ const VehicleHero = ({ desc, imageSource, title }: VehicleHeroProp) => {
           height={1300}
           width={1200}
         />
-        <div className="text-center flex flex-col z-10 -mt-[32rem] justify-center items-center w-full">
-          <div className="w-full flex flex-col gap-4 uppercase">
-            <p className="font-bold text-8xl">{title}</p>
-            <p className="font-thin text-base">{desc}</p>
-          </div>
-        </div>
+        <VehicleHeroText title={title} desc={desc} />
       </div>
     </>
   );

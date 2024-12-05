@@ -5,7 +5,7 @@ import ReactPlayer from "react-player";
 interface playerProps {
   width?: string;
   height?: string;
-  source: string;
+  source: string | string[];
 }
 
 const Player = ({ source, height, width }: playerProps) => {

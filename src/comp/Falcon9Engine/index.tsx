@@ -5,26 +5,38 @@ import { classNames } from "../../../util";
 
 import testImage1 from "../../assets/images/firstStageImage.jpg";
 import testImage2 from "../../assets/images/interStageImage.jpg";
+import { ReactNode } from "react";
 
-const tabs = [
-  {
-    id: 1,
-    name: "Sea Level",
-    component: <SeaLevel />,
-    imageSource: testImage1,
-  },
-  {
-    id: 2,
-    name: "Vaccum",
-    component: <Vaccum />,
-    imageSource: testImage2,
-  },
-];
+type tabsType = {
+  id: number;
+  name: string;
+  component: ReactNode;
+  imageSource: any | string;
+};
 
-const FalconEngine = () => {
+interface FalconEngineProp {
+  provideTabs?: tabsType[];
+}
+
+const FalconEngine = ({ provideTabs }: FalconEngineProp) => {
+  const tabs = [
+    {
+      id: 1,
+      name: "Sea Level",
+      component: <SeaLevel />,
+      imageSource: testImage1,
+    },
+    {
+      id: 2,
+      name: "Vaccum",
+      component: <Vaccum />,
+      imageSource: testImage2,
+    },
+  ];
+
   return (
-    <div className="w-full h-screen min-h-full bg-transparent">
-      <div className="w-full h-full text-white min-h-full">
+    <div className="w-full h-screen min-h-screen bg-transparent overflow-hidden">
+      <div className="w-full h-full text-white min-h-full bg-black">
         <TabGroup>
           {/* <TabPanels>
             {tabs.map((tab, i: number) => (
@@ -45,7 +57,7 @@ const FalconEngine = () => {
                 <p className="text-lg">Engines</p>
                 <h1 className="text-5xl font-semibold">Merlin</h1>
               </div>
-              <TabList className="flex gap-6 border-none">
+              <TabList className="flex gap-6 border-none h-full">
                 {tabs.map((tab: any, i: number) => (
                   <Tab
                     key={i}
@@ -65,7 +77,7 @@ const FalconEngine = () => {
               </TabList>
               <TabPanels className="mt-4 text-white z-10">
                 {tabs.map((tab, i: number) => (
-                  <TabPanel key={i}>{tab.component}</TabPanel>
+                  <TabPanel key={`${tab.id}.${i}`}>{tab.component}</TabPanel>
                 ))}
               </TabPanels>
             </div>
@@ -80,12 +92,12 @@ export default FalconEngine;
 
 function SeaLevel() {
   const data = [
-    { id: 1, text: "Height", value: "13.1 m", spanValue: "/ 43 ft" },
+    { id: 1, text: "PROPELLANT", value: "LOX", spanValue: "/ RP-1" },
     {
       id: 2,
-      text: "Diameter",
-      value: "5.2 m",
-      spanValue: "/ 17.1 ft",
+      text: "Thrust",
+      value: "845 kN",
+      spanValue: "/ 190,000 lbf",
     },
   ];
   return (
@@ -105,7 +117,7 @@ function SeaLevel() {
             key={`${item.id}.${i}`}
             className="w-full flex justify-between border-b-[0.5px] border-opacity-50 border-white pb-4 pt-4"
           >
-            <p className="font-medium text-xs">{item.text}</p>
+            <p className="font-semibold text-xs">{item.text}</p>
             <p className="text-sm font-medium">
               {item.value}{" "}
               <span className="text-gray-400">{item.spanValue}</span>
@@ -119,12 +131,12 @@ function SeaLevel() {
 
 function Vaccum() {
   const data = [
-    { id: 1, text: "Height", value: "13.1 m", spanValue: "/ 43 ft" },
+    { id: 1, text: "PROPELLANT", value: "Lox", spanValue: "/ RP-1" },
     {
       id: 2,
-      text: "Diameter",
-      value: "5.2 m",
-      spanValue: "/ 17.1 ft",
+      text: "Thrust",
+      value: "981 kN",
+      spanValue: "/ 220,500 lbf",
     },
   ];
   return (
@@ -145,7 +157,7 @@ function Vaccum() {
             key={`${item.id}.${i}`}
             className="w-full flex justify-between border-b-[0.5px] border-opacity-50 border-white pb-4 pt-4"
           >
-            <p className="font-medium text-xs">{item.text}</p>
+            <p className="font-semibold text-xs">{item.text}</p>
             <p className="text-sm font-medium">
               {item.value}{" "}
               <span className="text-gray-400">{item.spanValue}</span>

@@ -54,7 +54,7 @@ const swipperComponentsArray: swipperComponentType[] = [
 
 const Overviews = () => {
   return (
-    <div className="w-full bg-transparent h-screen min-h-screen">
+    <div className="w-full bg-transparent h-screen min-h-screen text-white">
       <Swiper
         navigation={true}
         slidesPerView={1}

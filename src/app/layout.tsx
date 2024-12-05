@@ -7,6 +7,10 @@ import Header from "@/comp/Header";
 export const metadata: Metadata = {
   title: "SpaceX",
   description: "Aerospace",
+  applicationName: "SpaceX",
+  creator: "Khizer Hussain",
+  publisher: "Netlify",
+  keywords: ["next.js", "tailwindcss", "framer-motion"],
 };
 
 interface RootLayoutProp {
@@ -16,7 +20,7 @@ interface RootLayoutProp {
 export default function RootLayout({ children }: Readonly<RootLayoutProp>) {
   return (
     <html lang="en">
-      <body className="overscroll-none">
+      <body className="overscroll-none antialiased">
         <Header />
         {children}
         <Footer />

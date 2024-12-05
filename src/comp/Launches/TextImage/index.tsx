@@ -4,9 +4,14 @@ import React, { useRef } from "react";
 import beforeRenderImage from "../../../assets/images/WebsiteF9Fairings_Lines_Desktop.jpg";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import Overviews from "../Overviews";
+// import Overviews from "../Overviews";
 
-const TextImage = () => {
+interface TextImageProps {
+  description: string;
+  imageBeforeRender?: any | string;
+}
+
+const TextImage = ({ description, imageBeforeRender }: TextImageProps) => {
   const targetElement = useRef<any | null>(null);
   const { scrollYProgress } = useScroll({
     target: targetElement,
@@ -23,10 +28,10 @@ const TextImage = () => {
     <>
       <div
         ref={targetElement}
-        className="w-full h-screen bg-transparent overflow-hidden"
+        className="w-full h-screen bg-transparent overflow-hidden text-white"
       >
         <Image
-          src={beforeRenderImage}
+          src={imageBeforeRender || beforeRenderImage}
           alt="falcon-9"
           className="w-full h-full z-0 object-cover"
         />
@@ -36,16 +41,9 @@ const TextImage = () => {
           className="w-2/5 font-thin text-sm pl-14 z-10 leading-7"
           exit={{ display: "none" }}
         >
-          Falcon 9 is a reusable, two-stage rocket designed and manufactured by
-          SpaceX for the reliable and safe transport of people and payloads into
-          Earth orbit and beyond. Falcon 9 is the world’s first orbital class
-          reusable rocket. Reusability allows SpaceX to refly the most expensive
-          parts of the rocket, which in turn drives down the cost of space
-          access.
+          {description}
         </motion.p>
       </div>
-
-      <Overviews />
     </>
   );
 };
